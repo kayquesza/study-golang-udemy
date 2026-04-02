@@ -27,3 +27,13 @@ Adia a execução de um comando ou função até o momento imediatamente anterio
 
 ### 7. Closure
 Uma função que "envolve" e referencia variáveis que estão fora do seu corpo, mantendo o acesso a elas mesmo após a função original ter terminado sua execução.
+
+### 8. Funções com Ponteiros
+Permitem que uma função altere o valor original de uma variável passada como parâmetro, em vez de trabalhar com uma cópia.
+- **Passagem por Valor:** A função recebe uma cópia do dado. O valor original permanece intacto.
+- **Passagem por Referência (Ponteiro):** A função recebe o endereço de memória (`&variavel`). Ao desreferenciar (`*ponteiro`), a alteração impacta diretamente o valor original.
+
+### 9. Função `init`
+Uma função especial que é executada automaticamente antes da função `main`.
+- **Escopo:** Diferente da `main`, que é única por pacote, você pode ter uma função `init` em cada arquivo do seu projeto.
+- **Utilidade:** Ideal para setups iniciais, como inicialização de variáveis globais ou validações de ambiente.
