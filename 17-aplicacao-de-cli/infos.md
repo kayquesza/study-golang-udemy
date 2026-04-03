@@ -9,3 +9,7 @@ Este projeto consiste em uma ferramenta de terminal para buscar informações de
 
 ### Bibliotecas Utilizadas
 - `github.com/urfave/cli`: Framework para construção de interfaces de linha de comando em Go.
+
+### Como Executar
+```bash
+go run main.go ip --host google.com
