@@ -25,3 +25,17 @@ Para testar uma unidade (função ou método) de forma isolada, seguimos este pa
 - `go test`: Executa todos os testes do diretório atual.
 - `go test -v`: (Verbose) Mostra o nome de cada função de teste que está sendo executada e o tempo gasto.
 - `go test ./...`: Executa todos os testes do projeto, incluindo subpastas (útil para sua pasta de cursos).
+
+### Table Driven Tests (Testes Orientados a Dados)
+
+Esta é a forma recomendada de escrever testes em Go quando temos uma função que precisa ser validada com diversos conjuntos de entradas e saídas.
+
+#### Vantagens
+- **Manutenibilidade**: Adicionar novos casos de teste exige apenas uma nova linha em uma struct.
+- **Legibilidade**: O código do teste fica separado dos dados do teste.
+- **Cobertura**: Facilita a visualização de quais cenários já foram cobertos (casos de sucesso, erro, strings vazias, etc).
+
+#### Estrutura Básica
+1. Definimos uma `struct` local para representar o cenário (entrada e saída esperada).
+2. Criamos um `slice` dessa struct com todos os casos que queremos validar.
+3. Usamos um loop `range` para executar a função e comparar os resultados.

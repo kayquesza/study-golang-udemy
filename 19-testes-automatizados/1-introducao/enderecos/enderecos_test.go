@@ -6,21 +6,36 @@ package enderecos
 
 import "testing"
 
+type cenarioDeTest struct {
+	enderecoInserido string
+	retornoEsperado  string
+}
+
 // 't *testing.T' é o parâmetro e assinatura de uma função teste
 // A função obrigatoriamente precisa começar com 'Test' e, como boa prática,
 // em seguida, recebe o nome da função que será testada, como por exemplo:
 // 'Test' + 'TipoDeEndereco':
 func TestTipoDeEndereco(t *testing.T) {
-	enderecoParaTeste := "Rua Paulista"
 
-	tipoDeEnderecoEsperado := "Avenida"
+	cenariosDeTeste := []cenarioDeTest{
+		{"Rua ABC", "Rua"},
+		{"Avenida Paulista", "Avenida"},
+		{"Rodovia dos Imigrantes", "Rodovia"},
+		{"Praça das Rosas", "Tipo Inválido"},
+		{"Estrada da Serra", "Estrada"},
+		{"RUA FRATES", "Rua"},
+		{"AVENIDA REBOLÇAS", "Avenida"},
+		{"", "Tipo Inválido"},
+	}
 
-	tipoDeEnderecoRecebido := TipoDeEndereco(enderecoParaTeste)
-	if tipoDeEnderecoRecebido != tipoDeEnderecoEsperado {
-		t.Errorf("O tipo recebido é diferente do esperado! Esperava %s e recebeu %s.", tipoDeEnderecoEsperado, tipoDeEnderecoRecebido)
+	for _, cenario := range cenariosDeTeste {
+		retornoRecebido := TipoDeEndereco(cenario.enderecoInserido)
+		if retornoRecebido != cenario.retornoEsperado {
+			t.Errorf("O tipo recebido é %s é diferente do esperado %s",
+				retornoRecebido,
+				cenario.retornoEsperado,
+			)
+		}
 	}
 
 }
-
-// Para rodar o test no terminal:
-// 'go test'
