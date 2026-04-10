@@ -1,6 +1,11 @@
 package enderecos
 
-import "strings"
+import (
+	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
+)
 
 // 'TipoDeEndereco' verifica se um endereço tem um tipo válido e o retorna
 func TipoDeEndereco(endereco string) string {
@@ -17,7 +22,9 @@ func TipoDeEndereco(endereco string) string {
 	}
 
 	if enderecoTemUmTipoValido {
-		return strings.Title(primeiraPalavraDoEndereco) // se for válido, retorna a palavra em questão e deixa a inicial maiuscula
+		// Criado um 'caser' para o idioma português que transforma em Title case
+		caser := cases.Title(language.BrazilianPortuguese)
+		return caser.String(primeiraPalavraDoEndereco) // se for válido, retorna a palavra em questão e deixa a inicial maiuscula
 	}
 
 	return "Tipo Inválido"
