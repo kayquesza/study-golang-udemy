@@ -7,9 +7,9 @@ import (
 )
 
 type cachorro struct {
-	Nome  string `json:"nome"` // `json:exemplo` mostra qual a chave se tornará dentro do json
-	Raca  string `json:"raca"` // o nome não necessariamente precisa ser o mesmo
-	Idade uint   `json:"idade"`
+	Nome  string `json:"nome"`  // `json:exemplo` mostra qual a chave se tornará dentro do json
+	Raca  string `json:"raca"`  // o nome não necessariamente precisa ser o mesmo
+	Idade uint   `json:"idade"` // para deixar nulo ou vázio, substitur o conteúdo por `json:-`
 }
 
 func main() {
