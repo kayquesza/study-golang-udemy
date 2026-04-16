@@ -32,3 +32,21 @@ Embora ambos funcionem de forma semelhante, para páginas web **deve-se sempre u
 #### Sintaxe Básica nos Ficheiros .html
 - `{{ . }}`: Refere-se ao objeto de dados completo passado para o template.
 - `{{ .Campo }}`: Acede a um campo específico de uma struct (deve ser exportado/letra maiúscula em Go).
+
+
+## CSS (Cascading Style Sheets)
+
+O CSS é a linguagem utilizada para definir a apresentação visual dos documentos HTML. Enquanto o HTML estrutura, o CSS estiliza.
+
+### Formas de Aplicação
+1. **Inline**: Atributo `style` diretamente na tag (não recomendado para larga escala).
+2. **Interno**: Bloco `<style>` dentro do `<head>` do HTML.
+3. **Externo**: Ficheiro `.css` separado, referenciado por uma tag `<link>` (melhor prática para organização).
+
+### Anatomia de uma Regra
+- **Seletor**: Indica qual elemento será estilizado (ex: `h2`, `.classe`, `#id`).
+- **Propriedade**: O atributo que queremos mudar (ex: `color`, `margin`, `font-size`).
+- **Valor**: A definição específica para a propriedade (ex: `purple`, `20px`).
+
+### Visão Técnica
+Em Go, a renderização de templates permite que injetemos classes CSS dinamicamente. Por exemplo, poderíamos passar uma cor diferente no objeto `usuario` e usá-la no template: `<h2 style="color: {{ .Cor }}">`.
