@@ -1,20 +1,35 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"text/template"
 )
 
-// Arquivo arquétipo para a próxima aula.
+var templates *template.Template
 
-func test(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Carregar página de teste!"))
+type usuario struct {
+	Nome  string
+	Email string
 }
 
 func main() {
 
-	http.HandleFunc("/test", test)
+	// Referenciando todos os arquivos que são .html
+	templates := template.Must(template.ParseGlob("*.html"))
 
+	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
+
+		u := usuario{
+			"João",
+			"Joaopedro@gmail.com",
+		}
+
+		templates.ExecuteTemplate(w, "home.html", u)
+	})
+
+	fmt.Println("Escutando na porta :5000.")
 	log.Fatal(http.ListenAndServe(":5000", nil))
 
 }
