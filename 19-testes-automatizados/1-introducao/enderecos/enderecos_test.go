@@ -2,9 +2,12 @@
 
 // Esse arquivo terá um 'teste de unidade'
 // Testará uma pequena parte do código
-package enderecos
+package enderecos_test
 
-import "testing"
+import (
+	"introducao-testes/enderecos"
+	"testing"
+)
 
 type cenarioDeTest struct {
 	enderecoInserido string
@@ -16,6 +19,8 @@ type cenarioDeTest struct {
 // em seguida, recebe o nome da função que será testada, como por exemplo:
 // 'Test' + 'TipoDeEndereco':
 func TestTipoDeEndereco(t *testing.T) {
+
+	t.Parallel() // O teste será rodado em paralelo com o outro teste (ambos precisam ter essa característica)
 
 	cenariosDeTeste := []cenarioDeTest{
 		{"Rua ABC", "Rua"},
@@ -29,7 +34,7 @@ func TestTipoDeEndereco(t *testing.T) {
 	}
 
 	for _, cenario := range cenariosDeTeste {
-		retornoRecebido := TipoDeEndereco(cenario.enderecoInserido)
+		retornoRecebido := enderecos.TipoDeEndereco(cenario.enderecoInserido)
 		if retornoRecebido != cenario.retornoEsperado {
 			t.Errorf("O tipo recebido é %s é diferente do esperado %s",
 				retornoRecebido,
@@ -39,3 +44,16 @@ func TestTipoDeEndereco(t *testing.T) {
 	}
 
 }
+
+// 'TestQualquer' apenas para entender melhor a autilização do 'go test -v' no terminal
+func TestQualquer(t *testing.T) {
+	t.Parallel() // O teste será rodado em paralelo com o outro teste (ambos precisam ter essa característica)
+	if 3 < 2 {
+		t.Errorf("Teste quebrou!")
+	}
+}
+
+// 'go test --cover' mostra a porcentagem de quanto a função está sendo "coberta"
+// 'go test --coverprofile example.txt' gera um arquivo relatando tudo que está coberto ou não
+// 'go tool cover --func=example.txt' lê melhor o arquivo gerado anteriormente
+// 'go tool cover --html=example.txt' gera um arquivo temporário html mostrando todo conteúdo necessário (o que está coberto e o que não está)
